@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    {% for item in users %}
+    <div class="col-12 col-sm-11 col-md-7">
+        <div class="card mb-3 border text-light" style="background: linear-gradient(45deg, #61d8de, #7774e5, #ea39fa);
+">
+            <div class="card-body">
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 bd-highlight">
+                        {% if item.photo %}
+                        <img style="object-fit: cover; width: 100px; height: 100px;" class="rounded-circle mr-3" src="{{ item.photo.url }}" alt="" width="100">
+                        {% else %}
+                        <i class="fa fa-user-o fa-5x"></i>
+                        {% endif %}
+                    </div>
+                    <div class="p-2 flex-grow-1 bd-highlight">
+                        <h5 class="mt-0 text-white me-2">{{ item.last_name }} {{ item.first_name }} {% if item.patronymic %} {{ item.patronymic }} {% endif %}</h5>
+                        <p class="mt-0">{{ item.info|truncatewords:50 }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
